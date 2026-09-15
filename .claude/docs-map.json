@@ -3,5 +3,18 @@
     "title": "Core data model (Employee, Site, Role, Course, Certificate)",
     "doc": "https://plusport.atlassian.net/wiki/spaces/~5bffb891821157160babf0d1/pages/3993894926/Core+data+model+Employee+Site+Role+Course+Certificate",
     "paths": ["*/backend/Models/*.cs"]
+  },
+  {
+    "title": "Employee add/edit (admin)",
+    "doc": "https://plusport.atlassian.net/wiki/spaces/~5bffb891821157160babf0d1/pages/3993600020/Employee+add+edit+admin",
+    "paths": [
+      "*/backend/Controllers/EmployeesController.cs",
+      "*/backend/Controllers/SitesController.cs",
+      "*/backend/Controllers/RolesController.cs",
+      "*/backend/Auth/AdminOnlyAttribute.cs",
+      "*/frontend/src/EmployeesPage.tsx",
+      "*/frontend/src/EmployeeForm.tsx",
+      "*/frontend/src/RoleContext.tsx"
+    ]
   }
 ]
