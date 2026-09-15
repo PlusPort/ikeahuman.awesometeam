@@ -13,4 +13,5 @@ Docs live in Confluence, in the same space as the templates (`~5bffb891821157160
 4. Related tickets is append-only — add the current ticket if there is one; don't remove existing entries when updating an existing doc.
 5. Show the filled draft in the chat and ask the user to confirm before publishing — never skip this even if an earlier doc this session was already approved.
 6. Once confirmed, publish it: `createConfluencePage` with `spaceId: "~5bffb891821157160babf0d1"`, `parentId: "3992813572"`, `contentFormat: "markdown"` for a new doc; `updateConfluencePage` for an existing one.
-7. Report back the page URL Confluence returns — that's the doc's source of truth from then on, not the chat draft.
+7. Add or update an entry in `.claude/docs-map.json` for the code paths this doc covers (the Scope section tells you which): `{"title": <Title>, "doc": <page URL>, "paths": [<globs>]}`. This is what lets the "docs may be outdated" reminder hook fire for this doc when that code changes — skipping it means the doc silently goes unmonitored.
+8. Report back the page URL Confluence returns — that's the doc's source of truth from then on, not the chat draft.

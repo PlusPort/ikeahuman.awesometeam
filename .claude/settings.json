@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty')\n[ -z \"$f\" ] && exit 0\nmap=\".claude/docs-map.json\"\n[ -f \"$map\" ] || exit 0\nmatches=\"[]\"\nwhile IFS= read -r entry; do\n  title=$(jq -r '.title' <<<\"$entry\")\n  doc=$(jq -r '.doc' <<<\"$entry\")\n  hit=0\n  while IFS= read -r pattern; do\n    case \"$f\" in $pattern) hit=1 ;; esac\n  done < <(jq -r '.paths[]' <<<\"$entry\")\n  if [ \"$hit\" = 1 ]; then\n    matches=$(jq -c --arg t \"$title\" --arg d \"$doc\" '. + [{title:$t, doc:$d}]' <<<\"$matches\")\n  fi\ndone < <(jq -c '.[]' \"$map\")\n[ \"$matches\" = \"[]\" ] && exit 0\njq -n --argjson m \"$matches\" '\n  (\"Docs that may now be outdated: \" + ([$m[] | (.title + \" (\" + .doc + \")\")] | join(\"; \")) + \". Use the documentation skill to review/update.\") as $msg\n  | {systemMessage: $msg, hookSpecificOutput: {hookEventName: \"PostToolUse\", additionalContext: $msg}}'\n",
+            "timeout": 10,
+            "statusMessage": "Checking related docs..."
+          }
+        ]
+      }
+    ]
+  }
+}
