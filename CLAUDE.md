@@ -11,6 +11,8 @@ What systems do we use?
 - GitHub for the repo
 - GitHub for tickets
 - Confluence for templates
+- .NET for the backend (`backend/`)
+- React (Vite + TypeScript) for the frontend (`frontend/`)
 
 ## 2. Current pipeline
 
