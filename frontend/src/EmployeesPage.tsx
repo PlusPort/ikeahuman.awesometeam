@@ -57,16 +57,20 @@ export function EmployeesPage() {
   }
 
   return (
-    <section>
-      <h1>Employees</h1>
+    <section className="page">
+      <div className="toolbar">
+        <h1>Employees</h1>
 
-      <label htmlFor="acting-as">Acting as</label>
-      <select id="acting-as" value={role} onChange={(e) => setRole(e.target.value as 'Admin' | 'User')}>
-        <option value="Admin">Admin</option>
-        <option value="User">User</option>
-      </select>
+        <div className="field-inline">
+          <label htmlFor="acting-as">Acting as</label>
+          <select id="acting-as" value={role} onChange={(e) => setRole(e.target.value as 'Admin' | 'User')}>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </select>
+        </div>
+      </div>
 
-      {loadError && <p role="alert">{loadError}</p>}
+      {loadError && <p className="alert" role="alert">{loadError}</p>}
 
       {editing && sites.length > 0 && roles.length > 0 && (
         <EmployeeForm
@@ -79,17 +83,19 @@ export function EmployeesPage() {
       )}
 
       {isAdmin && !editing && (
-        <button type="button" onClick={() => setEditing('new')}>
+        <button type="button" className="btn btn-primary" onClick={() => setEditing('new')}>
           Add employee
         </button>
       )}
 
-      <ul>
+      <ul className="list">
         {employees.map((employee) => (
-          <li key={employee.id}>
-            {employee.name} — {siteName(employee.siteId)} — {roleName(employee.roleId)}
+          <li key={employee.id} className="list-item">
+            <span>
+              {employee.name} — {siteName(employee.siteId)} — {roleName(employee.roleId)}
+            </span>
             {isAdmin && !editing && (
-              <button type="button" onClick={() => setEditing(employee)}>
+              <button type="button" className="btn btn-secondary" onClick={() => setEditing(employee)}>
                 Edit
               </button>
             )}

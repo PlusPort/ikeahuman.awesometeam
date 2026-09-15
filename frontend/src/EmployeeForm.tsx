@@ -36,40 +36,44 @@ export function EmployeeForm({ employee, sites, roles, onSubmit, onCancel }: Emp
   }
 
   return (
-    <form onSubmit={handleSubmit} aria-label={employee ? 'Edit employee' : 'Add employee'}>
-      <label htmlFor="employee-name">Name</label>
-      <input
-        id="employee-name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+    <form className="card" onSubmit={handleSubmit} aria-label={employee ? 'Edit employee' : 'Add employee'}>
+      <div className="field">
+        <label htmlFor="employee-name">Name</label>
+        <input id="employee-name" value={name} onChange={(e) => setName(e.target.value)} />
+      </div>
 
-      <label htmlFor="employee-site">Site</label>
-      <select id="employee-site" value={siteId} onChange={(e) => setSiteId(Number(e.target.value))}>
-        {sites.map((site) => (
-          <option key={site.id} value={site.id}>
-            {site.name}
-          </option>
-        ))}
-      </select>
+      <div className="field">
+        <label htmlFor="employee-site">Site</label>
+        <select id="employee-site" value={siteId} onChange={(e) => setSiteId(Number(e.target.value))}>
+          {sites.map((site) => (
+            <option key={site.id} value={site.id}>
+              {site.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
-      <label htmlFor="employee-role">Role</label>
-      <select id="employee-role" value={roleId} onChange={(e) => setRoleId(Number(e.target.value))}>
-        {roles.map((role) => (
-          <option key={role.id} value={role.id}>
-            {role.name}
-          </option>
-        ))}
-      </select>
+      <div className="field">
+        <label htmlFor="employee-role">Role</label>
+        <select id="employee-role" value={roleId} onChange={(e) => setRoleId(Number(e.target.value))}>
+          {roles.map((role) => (
+            <option key={role.id} value={role.id}>
+              {role.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
-      {error && <p role="alert">{error}</p>}
+      {error && <p className="alert" role="alert">{error}</p>}
 
-      <button type="submit" disabled={submitting}>
-        {employee ? 'Save changes' : 'Add employee'}
-      </button>
-      <button type="button" onClick={onCancel} disabled={submitting}>
-        Cancel
-      </button>
+      <div className="field-inline">
+        <button type="submit" className="btn btn-primary" disabled={submitting}>
+          {employee ? 'Save changes' : 'Add employee'}
+        </button>
+        <button type="button" className="btn btn-secondary" onClick={onCancel} disabled={submitting}>
+          Cancel
+        </button>
+      </div>
     </form>
   )
 }
