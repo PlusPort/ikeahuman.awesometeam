@@ -6,7 +6,7 @@ description: Use when drafting a ticket, user story, or backlog item for this pr
 # Ticket
 
 1. Read `templates/ticket.template.md`.
-2. Fill in the **Template** section only — Title, Story, Context / Background, Acceptance Criteria, Repo(s), DoD, Access rights, Links — using details from the conversation. The **Example** section further down is reference only; never copy it into the output.
+2. Fill in the **Template** section only — Title, Story, Context / Background, Acceptance Criteria, Repo(s), DoD, Access rights, Links — using details from the conversation. The **Example** section further down is reference only; never copy it into the output. The italicized text under each heading (e.g. "*Not user-facing? Replace with...*") is guidance for you, not content — replace it with the real answer directly, don't explain the choice or restate the guidance in the output.
 3. Leave a field as its placeholder text (e.g. *"confirm with dev team"*) if the conversation doesn't answer it — don't invent a JIRA number, repo name, or acceptance criteria that weren't discussed.
 4. Ask the user for anything required that's still missing (at minimum: Story, Acceptance Criteria) rather than guessing.
 5. Show the filled draft in the chat and ask the user to confirm before creating anything — creating a ticket is visible to the whole team, so never skip this even if an earlier ticket this session was already approved.
